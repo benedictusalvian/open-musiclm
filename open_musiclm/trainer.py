@@ -372,8 +372,8 @@ class SingleStageTrainer(nn.Module):
         optim_path = Path(optim_path)
         assert model_path.exists() and optim_path.exists()
 
-        model_state_dict = torch.load(model_path, map_location=self.device)
-        optim_state_dict = torch.load(optim_path, map_location=self.device)
+        model_state_dict = torch.load(model_path, map_location="cpu")
+        optim_state_dict = torch.load(optim_path, map_location="cpu")
         transformer = self.accelerator.unwrap_model(self.transformer)
         transformer.load_state_dict(model_state_dict)
         self.optim.load_state_dict(optim_state_dict)
@@ -382,7 +382,7 @@ class SingleStageTrainer(nn.Module):
             assert exists(scheduler_path), 'the config specifies lr warmup is used, but no scheduler checkpoint is given. try setting lr_warmup to 0.'
             scheduler_path = Path(scheduler_path)
             assert scheduler_path.exists()
-            scheduler_state_dict = torch.load(scheduler_path, map_location=self.device)
+            scheduler_state_dict = torch.load(scheduler_path, map_location="cpu")
             self.scheduler.load_state_dict(scheduler_state_dict)
 
         if steps > 0:

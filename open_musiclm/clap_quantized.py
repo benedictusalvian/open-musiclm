@@ -106,7 +106,7 @@ def create_clap_quantized(
     clap_quantized = ClapQuantized(clap=clap, learn_rvq=learn_rvq, **kwargs)
 
     if exists(rvq_checkpoint_path):
-        rvq = torch.load(rvq_checkpoint_path, map_location=device)
+        rvq = torch.load(rvq_checkpoint_path, map_location="cpu")
         clap_quantized.rq.load_state_dict(rvq)
 
     return clap_quantized

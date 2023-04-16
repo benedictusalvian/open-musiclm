@@ -138,3 +138,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+checkpoint/clap.rvq.950_no_fusion.pt
+checkpoint/coarse.transformer.18000.pt
+checkpoint/fine.transformer.24000.pt
+checkpoint/hello.txt
+checkpoint/kmeans_10s_no_fusion.joblib
+checkpoint/musiclm_large_small_context.json
+checkpoint/semantic.transformer.14000.pt
